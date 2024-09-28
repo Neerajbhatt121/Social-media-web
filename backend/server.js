@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from "morgan";
 import connectDb from "../config/db.js";
 import authRoutes from './routes/authRoutes.js';
+import postRoutes from './routes/postRoutes.js';
 const app = express()
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(morgan('dev'));
 //-----------------------//
 // Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/post', postRoutes);
 
 app.get('/', (req,res) => {
     res.send("Api is running: ");
