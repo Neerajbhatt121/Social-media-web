@@ -25,6 +25,14 @@ const userSchema = new mongoosse.Schema(
         type: String,
         required: true
     },
+    friends:[{
+        type: mongoosse.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
+    conversation: [{
+        type: mongoosse.Schema.Types.ObjectId,
+        ref: 'conversation'
+    }],
     isGrpAdm: {
         type: Boolean,
         default: 0
@@ -33,4 +41,4 @@ const userSchema = new mongoosse.Schema(
     { timeStamps: true}
 )
 
-export default mongoosse.model("users", userSchema);
+export default mongoosse.model("user", userSchema);

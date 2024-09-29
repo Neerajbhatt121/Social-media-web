@@ -3,7 +3,7 @@ import { comparePassword, hashPassword } from "../helper/authHelper.js";
 import userModal from "../modals/userModal.js";
 export const registerController = async (req, res) => {
   try {
-    const { name, username, email, password, answer } = req.body;
+    const { name, username, email, password, answer, friends } = req.body;
     if (!name) {
       res.send({ message: "name is require" });
     }
@@ -47,6 +47,7 @@ export const registerController = async (req, res) => {
       email,
       password: hashpassword,
       answer,
+      friends: friends || []
     }).save();
     console.log(user);
     return res.status(200).send({
