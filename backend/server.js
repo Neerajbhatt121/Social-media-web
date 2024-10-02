@@ -5,6 +5,7 @@ import morgan from "morgan";
 import connectDb from "../config/db.js";
 import authRoutes from './routes/authRoutes.js';
 import conversationRoutes from './routes/conversationRoutes.js';
+import messageRouter from './routes/messageRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 const app = express()
 
@@ -24,6 +25,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/post', postRoutes);
 app.use('/api/v1/chats', conversationRoutes);
+app.use('/api/v1/message', messageRouter);
 
 app.get('/', (req,res) => {
     res.send("Api is running: ")
