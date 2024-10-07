@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-main{
+    width: 98.7vw;
+    height: 7vh;
+    background-color: rgb(240, 238, 238);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.logo{
+    width: 5%;
+    min-width: 40px;
+    height: 100%;
+    display: flex;
+    max-width: 10%;
+    align-items: center;
+    
+}
+
+.logo img{
+    width: 100%;
+    height: auto;
+    min-width: 4%;
+    max-height: 100%;
+    object-fit: contain;
+    height: 90%;
+}
+
+
+.main-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar{
+
+    width: 35vw;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 75%;
+    height: 80%;
+    padding: 5px;
+    font-size: medium;
+    border-radius: 5px;
+    border: none;
+    
+}
+
+
+.header-options{
+    
+    width: 12vw;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.btn{
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: transparent; /* Remove background color */
+    color: #990bf7; /* Change text color (optional) */
+    font-weight: 500;
+  }
+  
+
+
+
+/* --------    SIDE BAR    ------- */
+
+.sidebar-main{
+    width: 15vw;
+    height: 100vh;
+    background-color: rgb(180, 175, 175);
+}
+
+
+
+
+/* ----------- chat list ------------- */
+.chatlist-col{
+    width: 20vw;
+    height: 120vh;
+    background-color: rgb(178, 188, 188);
+}

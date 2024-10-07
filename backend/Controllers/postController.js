@@ -51,7 +51,7 @@ export const getAllPosts = async (req, res) => {
     const  Posts  = await postModal.find();
     if (Posts.length > 0) {
       res.status(200).send({
-        sucess: true,
+        success: true, 
         message: "Get all posts",
         Posts
       });
