@@ -70,10 +70,10 @@ export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email) {
-      res.send({ message: "email is require" });
+      return res.send({ message: "email is require" });
     }
     if (!password) {
-      res.send({ message: "password is require" });
+      return res.send({ message: "password is require" });
     }
 
     // find is email is present or not

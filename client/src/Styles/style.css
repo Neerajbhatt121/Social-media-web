@@ -7,11 +7,12 @@
 .header-main{
     width: 98.7vw;
     height: 7vh;
-    background-color: rgb(240, 238, 238);
+    background-color: rgb(18, 18, 18);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    position: fixed;
+    z-index: 10;
 }
 
 .logo{
@@ -37,6 +38,7 @@
 .main-container{
     display: flex;
     justify-content: space-between;
+    background-color: black;
 }
 
 .search-bar{
@@ -55,7 +57,8 @@
     font-size: medium;
     border-radius: 5px;
     border: none;
-    
+    background-color: rgb(18, 18, 18, 0.2);
+    border: 1px solid rgb(111, 109, 109);
 }
 
 
@@ -81,23 +84,24 @@
     font-weight: 500;
   }
   
-
-
-
 /* --------    SIDE BAR    ------- */
 
 .sidebar-main{
     width: 15vw;
     height: 100vh;
-    background-color: rgb(180, 175, 175);
+    background-color: rgba(70, 69, 69, 0.2);
 }
-
-
 
 
 /* ----------- chat list ------------- */
 .chatlist-col{
     width: 20vw;
     height: 120vh;
-    background-color: rgb(178, 188, 188);
+    background-color: rgba(89, 86, 86, 0.2);
+}
+
+/* main page to show posts */
+.Post-container{
+    background-color: black;
+    margin-top: 30px;
 }
