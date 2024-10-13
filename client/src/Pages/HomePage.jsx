@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FiThumbsUp } from "react-icons/fi";
 import ChatList from "../components/ChatList";
-import Header from "../components/Header";
+import { useAuth } from "../components/Context/auth";
+import Layout from "../components/layout/Layout";
 import Sidebar from "../components/sidebar";
 import "../Styles/style.css";
 
 const HomePage = () => {
   const [Posts, setPosts] = useState([]);
+  const [auth] = useAuth();
 
   //--- Get all Posts ----//
   const getAllPosts = async () => {
@@ -37,10 +39,10 @@ const HomePage = () => {
   };
 
   return (
-    <>
-      <Header />
-      <div className="main-container">
+    <Layout>
         <Sidebar />
+      <div className="main-container">
+        
         
         <div className="Post-container">
           {Posts.map((p) => {
@@ -64,7 +66,7 @@ const HomePage = () => {
         </div>
         <ChatList />
       </div>
-    </>
+    </Layout>
   );
 };
 

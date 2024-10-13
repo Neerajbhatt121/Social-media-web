@@ -14,7 +14,7 @@ router.post('/create-post',requireSignIn ,formidable(), createPostController)
 
 //---------------------//
 // Get all posts
-router.get('/get/allPosts', getAllPosts)
+router.get('/get/allPosts',requireSignIn, getAllPosts)
 
 //---------------------//
 // Get all posts of user

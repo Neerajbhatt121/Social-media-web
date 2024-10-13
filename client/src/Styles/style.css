@@ -38,7 +38,8 @@
 .main-container{
     display: flex;
     justify-content: space-between;
-    background-color: black;
+    background-color: rgb(229, 226, 226);
+    margin-left: 15vw;   
 }
 
 .search-bar{
@@ -79,8 +80,8 @@
 }
 
 .dropdown-menu .dropdown-item {
-    background-color: transparent; /* Remove background color */
-    color: #990bf7; /* Change text color (optional) */
+    background-color: transparent; 
+    color: #990bf7; 
     font-weight: 500;
   }
   
@@ -89,9 +90,49 @@
 .sidebar-main{
     width: 15vw;
     height: 100vh;
-    background-color: rgba(70, 69, 69, 0.2);
+    background-color: rgb(40, 33, 42);
+    color: wheat;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    
 }
 
+.sidebar-main h3 img{
+    width: 25%;
+    height: auto;
+    min-width: 8%;
+    max-height: 100%;
+    object-fit: contain;
+    height: 90%;
+}
+
+.sidebar-main h3{
+    margin-top: 2vh;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: x-large;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-main span{
+    align-items: left;
+    font-size: medium;
+    font-weight: bold;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    row-gap: 13px;
+    flex-grow: 1;
+}
+
+.Profile{
+    margin-top: auto;
+}
 
 /* ----------- chat list ------------- */
 .chatlist-col{
@@ -104,4 +145,5 @@
 .Post-container{
     background-color: black;
     margin-top: 30px;
+    margin-left: 15vw;
 }
