@@ -1,0 +1,25 @@
+.Profile_main_container{
+    width: 85%;
+    height: 22vh;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dp{
+    width: 10vw;
+    height: 10vw;
+    background-color: antiquewhite;
+    border-radius: 50%;
+    
+    
+}
+
+.Profile_info_count{
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

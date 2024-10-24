@@ -136,9 +136,15 @@
 
 /* ----------- chat list ------------- */
 .chatlist-col{
-    width: 20vw;
-    height: 120vh;
-    background-color: rgba(89, 86, 86, 0.2);
+    width: 22vw;
+    height: 100vh;
+    background-color: rgb(145, 143, 145);
+    color: wheat;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
 }
 
 /* main page to show posts */
@@ -147,3 +153,7 @@
     margin-top: 30px;
     margin-left: 15vw;
 }
+
+
+/* chat sidebar */
+

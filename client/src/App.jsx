@@ -6,6 +6,7 @@ import Register from "./Pages/auth/register.jsx";
 import ChatList from "./Pages/Chat/ChatList.jsx";
 import ChatPage from "./Pages/ChatPage.jsx";
 import HomePage from "./Pages/HomePage.jsx";
+import UserProfile from "./Pages/UserProfile.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/chatlist"  element={<ChatList/>} />
+        <Route path="/profile"  element={<UserProfile/>} />
       </Routes>
     </>
   );

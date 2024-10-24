@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Toaster } from 'react-hot-toast';
+import Sidebar from '../sidebar';
 
 const Layout = ({children, title, description, keyword, author}) => {
 
@@ -13,7 +14,7 @@ const Layout = ({children, title, description, keyword, author}) => {
         <meta name="author" content={author}/>
         <title>{title}</title>    
       </Helmet>
-      
+      <Sidebar/>
       <main style={({minHeight:'75.7vh'})}>
         <Toaster/>
           {children}

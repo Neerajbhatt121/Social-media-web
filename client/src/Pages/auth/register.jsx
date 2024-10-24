@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
           placeholder="Enter your name"
           onChange={(e) => setName(e.target.value)}
           value={name}
-          required
+          required00
         />
       </div>
       <div className="mb-3">

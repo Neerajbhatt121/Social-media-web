@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import conversationRoutes from './routes/conversationRoutes.js';
 import messageRouter from './routes/messageRoutes.js';
 import postRoutes from './routes/postRoutes.js';
+import userFindRoutes from './routes/userFindRoutes.js';
 const app = express()
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/post', postRoutes);
 app.use('/api/v1/chats', conversationRoutes);
 app.use('/api/v1/message', messageRouter);
+app.use('/api/v1/user', userFindRoutes);
 
 app.get('/', (req,res) => {
     res.send("Api is running: ")

@@ -4,7 +4,6 @@ import { FiThumbsUp } from "react-icons/fi";
 import ChatList from "../components/ChatList";
 import { useAuth } from "../components/Context/auth";
 import Layout from "../components/layout/Layout";
-import Sidebar from "../components/sidebar";
 import "../Styles/style.css";
 
 const HomePage = () => {
@@ -40,7 +39,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-        <Sidebar />
+       
       <div className="main-container">
         
         
