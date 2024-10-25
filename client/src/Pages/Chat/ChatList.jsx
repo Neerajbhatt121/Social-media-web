@@ -5,7 +5,7 @@ import { useAuth } from "../../components/Context/auth";
 const ChatList = ({ selectConversation }) => {
   const [conversation, setConversation] = useState([]);
   const [auth] = useAuth();
-
+  const [users, setUsers] = useState({}); 
   const userId = auth?.user?.id;
 
   useEffect(() => {
@@ -13,11 +13,18 @@ const ChatList = ({ selectConversation }) => {
       try {
         if (userId) {
           const response = await axios.get(`/api/v1/chats/conv/${userId}`);
-          console.log(response);
+           console.log(response);
 
           if (response.data && response.data.conversation) {
-            setConversation(response.data.conversation);
-            console.log(response.data.conversation);
+            setConversation(response.data.conversation[0].members);
+            console.log(response.data.conversation[0].members);
+
+            // Fetch user details for each memberId (friend)
+            response.data.conversation[0].members.forEach((memberId) => {
+              getUser(memberId);
+                console.log(memberId)
+                console.log(users)
+            });
           }
         } else {
           console.log("User not found");
@@ -32,14 +39,22 @@ const ChatList = ({ selectConversation }) => {
 
 //-------------------------//
 //     get the user
-const getUser = async (userId) => {
-  try {
-    const userId = userId;
-    const user = await axios.get(`/api/v1/user/finduserbyid/${userId}`) 
-  } catch (error) {
-    console.log(error);
-  }
-}  
+const getUser = async (memberId) => {
+    try {
+      if (!users[memberId]) {
+        const response = await axios.get(`/api/v1/user/finduserbyid/${memberId}`);
+        const user = response.data.user;
+          console.log(response.data)
+        setUsers((prevUsers) => ({
+          ...prevUsers,
+          [memberId]: user, 
+        }));
+        console.log(users)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
 
   return (
     <div>
@@ -48,14 +63,25 @@ const getUser = async (userId) => {
       <h3>Members</h3>
       <div>
         {conversation.length > 0 ? (
-          conversation.map((conv) => (
-            <div key={conv._id}>
-              <p>Conversation ID: {conv._id}</p>
-              {conv.members.map((member, index) => (
-                <div key={index}>Member {index + 1}: {member}</div>
-              ))}
-            </div>
-          ))
+          conversation.map((memberId) => (
+            <div key={memberId}>
+            {users[memberId] ? (
+              <div>
+                {/* Display user details once fetched */}
+                <img
+                  src={users[memberId].profilePicture || ""}
+                  alt="Profile"
+                  style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                />
+                <p>Username: {users[memberId].username}</p>
+                <p>Name: {users[memberId].name}</p>
+                <p>Email: {users[memberId].email}</p>
+              </div>
+            ) : (
+              <p>Loading user details...</p> // Show loading while fetching
+            )}
+          </div>
+        ))
         ) : (
           <p>No conversations found.</p>
         )}

@@ -1,8 +1,11 @@
 import userModal from '../modals/userModal.js';
+
 export const finduserbyid = async (req, res) => {
     try {
-        const {userId} = req.params.userId;
-        const user = await userModal.findOne({userId: userId})
+        const {userId} = req.params;
+        console.log(userId, "sajkhsadfklhj")
+        const user = await userModal.findOne({ _id: userId })
+        console.log(user)
 
         if (!user) {
             return res.status(404).send({
