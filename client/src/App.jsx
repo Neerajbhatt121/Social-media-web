@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./Pages/auth/login.jsx";
 import Register from "./Pages/auth/register.jsx";
+import ChatBox from "./Pages/Chat/ChatBox.jsx";
 import ChatList from "./Pages/Chat/ChatList.jsx";
 import ChatPage from "./Pages/ChatPage.jsx";
 import HomePage from "./Pages/HomePage.jsx";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/chatlist"  element={<ChatList/>} />
         <Route path="/profile"  element={<UserProfile/>} />
+        <Route path="/ChatBox"  element={<ChatBox/>} />
       </Routes>
     </>
   );
