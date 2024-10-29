@@ -13,8 +13,44 @@
 
 /* -------Chat box--------- */
 .chatbox-main{
-    width: 100%;
+    width: 63vw;
+    box-sizing: border-box;
     background-color: rgb(41, 23, 42);
     height: 100vh;
     color: gray;
+}
+
+.chats-container{
+    
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.msgbyme{
+    display: flex;
+    height: auto;
+    width: max-content;
+    background-color: rgb(11, 100, 22);
+    color: rgb(252, 252, 252);
+    margin: 10px;
+    font-size: medium;
+    border-radius: 5px;
+    padding: 5px;
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+.msgbyyou{
+    display: flex;
+    width: max-content;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    font-size: larger;
+    border-radius: 5px;
+    justify-content: flex-end;
+    align-self: flex-end;
 }
