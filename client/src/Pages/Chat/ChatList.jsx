@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import defaultImage from "../../assets/Group.png";
 import { useAuth } from "../../components/Context/auth";
 import '../../Styles/chatStyle.css';
@@ -9,6 +10,7 @@ const ChatList = ({ selectConversation }) => {
   const [auth] = useAuth();
   const [users, setUsers] = useState({});
   const userId = auth?.user?.id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchConversations = async () => {
@@ -50,6 +52,14 @@ const ChatList = ({ selectConversation }) => {
     }
   };
 
+//----------------//
+  // handle Select conversation
+  const handleSelectConversation = (conversationId, members) => {
+    console.log("Selected conversation ID:", conversationId);
+    console.log("Members:", members);
+    navigate('/ChatBox', {state: conversationId})
+  };
+
   return (
     <div className="chatlist-col">
     <h2>Your Chats</h2>
@@ -59,7 +69,7 @@ const ChatList = ({ selectConversation }) => {
         conversations.map((conv) => {
           const memberId = conv.members[1]; // keval pehla member hi
           return (
-            <div key={conv._id} onClick={() => selectConversation(conv._id, conv.members)}>
+            <div key={conv._id} onClick={() => handleSelectConversation(conv._id, conv.members)}>
               <div className="chatlist-item">
                 {users[memberId] ? (
                   <>

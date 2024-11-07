@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../components/Context/auth';
-import Layout from '../components/layout/Layout';
+import Sidebar from '../components/sidebar';
 import '../Styles/Profile.css';
 
 const UserProfile = () => {
@@ -18,7 +18,8 @@ const UserProfile = () => {
     }, [auth])
 
   return (
-    <Layout>
+    <>
+    <Sidebar/>
     <div className="Profile_main_container" style={{marginLeft:"15vw"}}>
       <div className='dp'></div>
       <div className='Profile_info_count'>
@@ -32,7 +33,7 @@ const UserProfile = () => {
           </div>
       </div>
     </div>
-    </Layout>
+    </>
   )
 }
 

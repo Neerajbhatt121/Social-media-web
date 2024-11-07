@@ -1,19 +1,17 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Toaster } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import ChatList from '../../Pages/Chat/ChatList';
 import Sidebar from '../sidebar';
 
-const navigate = useNavigate();
+//const navigate = useNavigate();
 
   //----------------//
   // handle Select conversation
   const handleSelectConversation = (conversationId, members) => {
     console.log("Selected conversation ID:", conversationId);
     console.log("Members:", members);
-    console.log("xxxxxxxxxxxxxxxxxxxxxxx", conversationId)
-    navigate('/ChatBox', {state: conversationId})
+    // navigate('/ChatBox', {state: conversationId})
   };
 
 const Layout = ({children, title, description, keyword, author}) => {
@@ -28,7 +26,7 @@ const Layout = ({children, title, description, keyword, author}) => {
         <title>{title}</title>    
       </Helmet>
       <Sidebar/>
-      <main style={({minHeight:'75.7vh' , marginLeft: "15vw"})}>
+      <main style={({minHeight:'75.7vh' , marginLeft: "15vw", width:"100%" })}>
         <Toaster/>
           {children}
       </main>

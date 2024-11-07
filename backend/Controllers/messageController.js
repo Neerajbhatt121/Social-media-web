@@ -28,7 +28,8 @@ export const GetMessage = async (req, res) => {
     try {
         const message = await messageModal.find({chatId})
             .sort({timestamp: -1})
-            // .limit(10)
+            .limit(25)
+            
             console.log(message)
         res.status(200).json(message)
     } catch (error) {

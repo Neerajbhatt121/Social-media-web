@@ -16,12 +16,12 @@ const Sidebar = () => {
          <h3><img src={logo} alt="" onClick={() => navigate('/')}/> PHOTONET</h3>
 
     <span style={{ width:"70%" }}>
-      <div><IoMdHome style={{ color: "purple", fontSize: '35px'}} onClick={() => navigate('/')}/> Home</div>
+      <div  onClick={() => navigate('/')}><IoMdHome style={{ color: "purple", fontSize: '35px'}}/> Home</div>
       <div><IoIosSearch style={{ color: "purple", fontSize: '35px'}} /> Search</div>
       <div><MdExplore  style={{ color: "purple", fontSize: '35px'}} /> Explore</div>
       <div><BsSend  style={{ color: "purple", fontSize: '30px'}} /> Message</div>
       <div><FaRegHeart style={{ color: "purple", fontSize: '30px' }}/> Notification</div>
-      <div className='Profile'><CgProfile style={{ color: "purple", fontSize: '25px' }} onClick={() => navigate('/profile')}/>Profile</div>
+      <div className='Profile' onClick={() => navigate('/profile')}><CgProfile style={{ color: "purple", fontSize: '25px' }} />Profile</div>
     </span>
 
     </div>

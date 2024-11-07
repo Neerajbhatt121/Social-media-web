@@ -42,9 +42,6 @@ const HomePage = () => {
   //----------------//
   // handle Select conversation
   const handleSelectConversation = (conversationId, members) => {
-    console.log("Selected conversation ID:", conversationId);
-    console.log("Members:", members);
-    console.log("xxxxxxxxxxxxxxxxxxxxxxx", conversationId)
     navigate('/ChatBox', {state: conversationId})
   };
 
@@ -62,8 +59,8 @@ const HomePage = () => {
               const imgSrc = `data:${p.photo.contentType};base64,${base64String}`;
 
               return (
-                <div className="card" key={p._id} style={{ width: "25rem", height:"30rem",color:"gray" ,marginTop:"3rem", backgroundColor:"black", overflow: "hidden", boxShadow: "0 10px 30px rgba(255, 255, 255, 0.2)" }}>
-                  <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "25rem", width: "100%", objectFit: "contain" }}/>
+                <div className="card" key={p._id} style={{ width: "27rem", height:"38rem",color:"gray" ,marginTop:"3rem", backgroundColor:"black", overflow: "hidden", boxShadow: "0 10px 30px rgba(255, 255, 255, 0.2)" }}>
+                  <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "27rem", width: "100%", objectFit: "contain" }}/>
                   <div className="card-body">
                     <h5 className="card-title">{p.description}</h5>
                       <span>{p.totallikes} <FiThumbsUp /></span>
