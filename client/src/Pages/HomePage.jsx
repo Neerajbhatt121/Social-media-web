@@ -10,6 +10,7 @@ import ChatList from "./Chat/ChatList";
 const HomePage = () => {
   const [Posts, setPosts] = useState([]);
   const [auth] = useAuth();
+  const [like, setLike] = useState(false)
   const navigate = useNavigate()
 
   //--- Get all Posts ----//
@@ -18,7 +19,6 @@ const HomePage = () => {
       const { data } = await axios.get("/api/v1/post/get/allPosts");
       setPosts(data.Posts);
       console.log(data);
-      console.log(data.Posts.photo);
     } catch (error) {
       console.error("Error while fetching posts:", error);
     }
@@ -63,7 +63,7 @@ const HomePage = () => {
                   <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "27rem", width: "100%", objectFit: "contain" }}/>
                   <div className="card-body">
                     <h5 className="card-title">{p.description}</h5>
-                      <span>{p.totallikes} <FiThumbsUp /></span>
+                      <span >{p.totallikes} <FiThumbsUp Likes /></span>
                       <span>{p.hashtag}</span>
                   </div>
                 </div>

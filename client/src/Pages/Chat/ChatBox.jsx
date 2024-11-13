@@ -19,7 +19,6 @@ useEffect(() => {
         try {
             const response = await axios.get(`/api/v1/message/getmessages/${chatId}`)
             setMessage(response.data.reverse())
-            console.log(response.data)
         } catch (error) {
             console.log(error);
         }
