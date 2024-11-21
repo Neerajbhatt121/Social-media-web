@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { IoMdMenu } from "react-icons/io";
 import { useAuth } from "../components/Context/auth";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 import "../Styles/Profile.css";
 import "../Styles/style.css";
 
@@ -36,7 +37,9 @@ const UserProfile = () => {
   const GetUserInfo = async () => {
     try {
       if (auth?.user?.id) {
-        const response = await axios.get(`/api/v1/post/get/user-posts/${auth.user.id}`);
+        const response = await axios.get(
+          `/api/v1/post/get/user-posts/${auth.user.id}`
+        );
         setPost(response.data);
       }
     } catch (error) {
@@ -75,7 +78,32 @@ const UserProfile = () => {
             <div>{Post.friends ? Post.friends : 0}</div>
           </div>
         </div>
+        <div>
+          
+            <button
+              className="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            ><IoMdMenu />
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a className="dropdown-item" href="#">
+                  Action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Another action
+                </a>
+              </li>
+            </ul>
+          
+        </div>
       </div>
+
       <div className="Profile_body_container">
         <div className="post-container">
           {Post?.Posts?.map((p) => {
@@ -123,10 +151,15 @@ const UserProfile = () => {
           className="modal-backdrop"
         >
           <div className="modal-content">
-            {selectedPost && selectedPost.photo && selectedPost.photo.data && selectedPost.photo.contentType ? (
+            {selectedPost &&
+            selectedPost.photo &&
+            selectedPost.photo.data &&
+            selectedPost.photo.contentType ? (
               <>
                 <img
-                  src={`data:${selectedPost.photo.contentType};base64,${bufferToBase64(selectedPost.photo.data.data)}`}
+                  src={`data:${
+                    selectedPost.photo.contentType
+                  };base64,${bufferToBase64(selectedPost.photo.data.data)}`}
                   alt="Full-screen Post"
                   style={{ width: "100%", height: "auto", objectFit: "cover" }}
                 />

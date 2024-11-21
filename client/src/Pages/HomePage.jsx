@@ -9,7 +9,7 @@ import ChatList from "./Chat/ChatList";
 
 const HomePage = () => {
   const [Posts, setPosts] = useState([]);
-  const [auth] = useAuth();
+  const [auth, setAuth] = useAuth();
   const [like, setLike] = useState(false)
   const navigate = useNavigate()
 
@@ -46,34 +46,38 @@ const HomePage = () => {
   };
 
   return (
-    <Layout>
+    <div>
+      {auth?.token ? (
+        <Layout>
        
-      <div className="main-container">
-        
-        
-        <div className="Post-container">
-          {Posts.map((p) => {
-            if (p.photo && p.photo.data && p.photo.contentType) {
-              // Convert the buffer to base64
-              const base64String = bufferToBase64(p.photo.data.data);
-              const imgSrc = `data:${p.photo.contentType};base64,${base64String}`;
-
-              return (
-                <div className="card" key={p._id} style={{ width: "27rem", height:"38rem",color:"gray" ,marginTop:"3rem", backgroundColor:"black", overflow: "hidden", boxShadow: "0 10px 30px rgba(255, 255, 255, 0.2)" }}>
-                  <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "27rem", width: "100%", objectFit: "contain" }}/>
-                  <div className="card-body">
-                    <h5 className="card-title">{p.description}</h5>
-                      <span >{p.totallikes} <FiThumbsUp Likes /></span>
-                      <span>{p.hashtag}</span>
+        <div className="main-container">
+          <div className="Post-container">
+            {Posts.map((p) => {
+              if (p.photo && p.photo.data && p.photo.contentType) {
+                // Convert the buffer to base64
+                const base64String = bufferToBase64(p.photo.data.data);
+                const imgSrc = `data:${p.photo.contentType};base64,${base64String}`;
+  
+                return (
+                  <div className="card" key={p._id} style={{ width: "27rem", height:"38rem",color:"gray" ,marginTop:"3rem", backgroundColor:"black", overflow: "hidden", boxShadow: "0 10px 30px rgba(255, 255, 255, 0.2)" }}>
+                    <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "27rem", width: "100%", objectFit: "contain" }}/>
+                    <div className="card-body">
+                      <h5 className="card-title">{p.description}</h5>
+                        <span >{p.totallikes} <FiThumbsUp Likes /></span>
+                        <span>{p.hashtag}</span>
+                    </div>
                   </div>
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })}
+          </div>
+          <ChatList selectConversation={handleSelectConversation} />
         </div>
-        <ChatList selectConversation={handleSelectConversation} />
-      </div>
-    </Layout>
+      </Layout>
+      ) : (
+        navigate("/login")
+      )}
+    </div>
   );
 };
 

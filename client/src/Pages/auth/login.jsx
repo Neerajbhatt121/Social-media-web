@@ -78,7 +78,7 @@ const Login = () => {
           />
         </div>
        <button type="submit" className="btn btn-outline-secondary">Primary</button>
-
+       <button class='btn btn-outline-secondary' onClick={() => navigate('/register')}>SignUp</button>
 
       </form>
     </div>

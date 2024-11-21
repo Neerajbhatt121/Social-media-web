@@ -112,8 +112,8 @@ const handleSubmit = async (e) => {
           Check me out
         </label>
       </div>
-      <button type="submit" class="btn btn-secondar"
-      >Register</button>
+      <button type='submit' class='btn btn-outline-secondary'>Register</button>
+      <button class='btn btn-outline-secondary' onClick={() => navigate('/login')}>SignUp</button>
     </form>
   </div>
   )
