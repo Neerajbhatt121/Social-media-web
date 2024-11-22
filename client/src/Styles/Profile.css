@@ -17,6 +17,8 @@
 .dp{
     width: 10vw;
     height: 10vw;
+    min-width: 70px;
+    min-height: 70px;
     background-color: antiquewhite;
     border-radius: 50%;
     

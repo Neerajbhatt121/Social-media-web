@@ -77,7 +77,7 @@ const Login = () => {
             required
           />
         </div>
-       <button type="submit" className="btn btn-outline-secondary">Primary</button>
+       <button type="submit" className="btn btn-outline-secondary">Login</button>
        <button class='btn btn-outline-secondary' onClick={() => navigate('/register')}>SignUp</button>
 
       </form>

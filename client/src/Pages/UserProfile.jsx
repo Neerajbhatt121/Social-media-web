@@ -1,20 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { IoMdMenu } from "react-icons/io";
+import { IoMdMenu, IoMdSunny } from "react-icons/io";
+import { IoLogOutOutline } from "react-icons/io5";
+import { MdAddAPhoto } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import "../assets/image.png";
+import ProfileImage from "../assets/image.png";
 import { useAuth } from "../components/Context/auth";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar";
+import Uploadpage from "../components/Uploadpage";
 import "../Styles/Profile.css";
 import "../Styles/style.css";
-
 const UserProfile = () => {
-  const [auth] = useAuth();
+  const [auth, setAuth] = useAuth();
   const [name, setname] = useState("");
   const [username, setusername] = useState("");
   const [Post, setPost] = useState([]);
   const [isDialogOpen, setisDialogOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
-
+  const [openUploadPhoto, setopenUploadPhoto] = useState(false);
+  
   const ModalRef = useRef();
+  const OpenUpload = useRef();
 
   useEffect(() => {
     if (auth?.user) {
@@ -63,14 +70,38 @@ const UserProfile = () => {
     }
   };
 
+//---------------------//
+const handleOpenUpload = () => {
+  setopenUploadPhoto(true);
+};
+
+const handleClosedUpload = (e) => {
+  if(!e || (e.target && e.target.className === "modal-backdrop")){
+    setopenUploadPhoto(false);
+  }
+};
+
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("Social-auth");
+    toast.success("Logout Successfully");
+  };
+
   return (
     <div className="profile-main">
       <Sidebar />
       <div className="Profile_main_container" style={{ marginLeft: "15vw" }}>
-        <div className="dp"></div>
+        <div className="dp">
+            <img src={ProfileImage} alt="#" style={{width: "100%", borderRadius: "50%"}}/>
+        </div>
         <div className="Profile_info_count">
           <div>
-            <div>Posts</div>
+            <div >Posts</div>
             <div>{Post?.Posts?.length}</div>
           </div>
           <div>
@@ -79,28 +110,33 @@ const UserProfile = () => {
           </div>
         </div>
         <div>
-          
-            <button
-              className="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            ><IoMdMenu />
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-            </ul>
-          
+          <button
+            className="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <IoMdMenu className="fs-2"/>
+          </button>
+          <ul className="dropdown-menu">
+            <li className="nav-item dropdown ps-2">
+              <IoMdSunny />
+              Change Theme
+            </li>
+            <li className="nav-item dropdown ps-2" onClick={handleLogout}>
+              <NavLink to="/login" className="nav-link">
+                <IoLogOutOutline />
+                Logout
+              </NavLink>
+            </li>
+            <li className="nav-item dropdown ps-2">
+              <NavLink to="#" className="nav-link" onClick={() => handleOpenUpload()}>
+                <MdAddAPhoto />
+                upload
+              </NavLink>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -113,7 +149,7 @@ const UserProfile = () => {
 
               return (
                 <div
-                  className="card"
+                  className="card "
                   key={p._id}
                   style={{
                     width: "12rem",
@@ -172,6 +208,11 @@ const UserProfile = () => {
           </div>
         </div>
       )}
+
+      {openUploadPhoto && (
+        <Uploadpage OpenUpload={OpenUpload} handleClosedUpload={handleClosedUpload} />
+      )}
+
     </div>
   );
 };

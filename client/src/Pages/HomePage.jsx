@@ -11,12 +11,18 @@ const HomePage = () => {
   const [Posts, setPosts] = useState([]);
   const [auth, setAuth] = useAuth();
   const [like, setLike] = useState(false)
+  const [spinner, setSpinner] =useState(false)
   const navigate = useNavigate()
 
   //--- Get all Posts ----//
   const getAllPosts = async () => {
     try {
+      setSpinner(true)
       const { data } = await axios.get("/api/v1/post/get/allPosts");
+      if(data?.success){
+        setSpinner(false)
+        console.log("hello")
+      }
       setPosts(data.Posts);
       console.log(data);
     } catch (error) {
@@ -49,8 +55,13 @@ const HomePage = () => {
     <div>
       {auth?.token ? (
         <Layout>
-       
+            
         <div className="main-container">
+        {spinner && (
+            <div className="spinner-border text-light align-self-center " role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+          )}
           <div className="Post-container">
             {Posts.map((p) => {
               if (p.photo && p.photo.data && p.photo.contentType) {
