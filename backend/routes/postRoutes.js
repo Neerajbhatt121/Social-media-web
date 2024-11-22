@@ -1,6 +1,6 @@
 import express from 'express';
 import formidable from "express-formidable";
-import { getAllPosts, getPostsOfUser } from '../Controllers/postController.js';
+import { getAllPosts, GetPostController, getPostsOfUser } from '../Controllers/postController.js';
 import { requireSignIn } from '../middleware/authMiddleware.js';
 
 import { createPostController } from '../Controllers/postController.js';
@@ -19,5 +19,9 @@ router.get('/get/allPosts',requireSignIn, getAllPosts)
 //---------------------//
 // Get all posts of user
 router.get('/get/user-posts/:userId', getPostsOfUser)
+
+//---------------------//
+// Get Controll Post
+router.get('/get/getControllPost/:page',requireSignIn, GetPostController)
 
 export default router;

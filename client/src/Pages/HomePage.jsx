@@ -12,13 +12,14 @@ const HomePage = () => {
   const [auth, setAuth] = useAuth();
   const [like, setLike] = useState(false)
   const [spinner, setSpinner] =useState(false)
+  const [page, setPage] = useState(1);
   const navigate = useNavigate()
 
   //--- Get all Posts ----//
   const getAllPosts = async () => {
     try {
       setSpinner(true)
-      const { data } = await axios.get("/api/v1/post/get/allPosts");
+      const { data } = await axios.get(`/api/v1/post/get/getControllPost/${page}`);
       if(data?.success){
         setSpinner(false)
         console.log("hello")
@@ -51,6 +52,34 @@ const HomePage = () => {
     navigate('/ChatBox', {state: conversationId})
   };
 
+
+  useEffect(() => {
+    if(page == 1) return
+    LoadMore()
+  },[page])
+
+  const LoadMore = async () => {
+    try {
+      const { data } = await axios.get(`/api/v1/post/get/getControllPost/${page}`);
+      if(data?.success){
+        console.log("hello")
+      }
+      setPosts([...Posts, ...data?.Posts]);
+      console.log(data);
+    } catch (error) {
+      console.error("Error while fetching posts:", error);
+    }
+  }
+
+
+  const handleLiked = async () => {
+      try {
+        
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
   return (
     <div>
       {auth?.token ? (
@@ -62,6 +91,7 @@ const HomePage = () => {
                 <span className="visually-hidden">Loading...</span>
             </div>
           )}
+          <div>
           <div className="Post-container">
             {Posts.map((p) => {
               if (p.photo && p.photo.data && p.photo.contentType) {
@@ -74,7 +104,7 @@ const HomePage = () => {
                     <img src={imgSrc} className="card-img-top" alt="Post Image" style={{ height: "27rem", width: "100%", objectFit: "contain" }}/>
                     <div className="card-body">
                       <h5 className="card-title">{p.description}</h5>
-                        <span >{p.totallikes} <FiThumbsUp Likes /></span>
+                        <span >{p.totallikes} <FiThumbsUp Likes onClick={handleLiked}/></span>
                         <span>{p.hashtag}</span>
                     </div>
                   </div>
@@ -82,6 +112,19 @@ const HomePage = () => {
               }
             })}
           </div>
+            <div className="m-3 p-3">
+            <button
+                style={{height:"30px", background:"yellow"}}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                Loadmore...
+              </button>
+            </div>
+          </div>
+          
           <ChatList selectConversation={handleSelectConversation} />
         </div>
       </Layout>

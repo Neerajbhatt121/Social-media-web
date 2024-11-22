@@ -98,3 +98,35 @@ export const getPostsOfUser = async (req, res) => {
       });
     }
 }
+
+//--------------------------------//
+// GetPostController
+export const GetPostController = async (req, res) => {
+  try {
+    const pageCount = 6
+    const page = req.params.page ? req.params.page : 1
+    const  Posts  = await postModal
+        .find({})
+        .skip((page -1) * pageCount)
+        .limit(pageCount)
+        .sort({createdAt: -1})
+    if (Posts.length > 0) {
+      res.status(200).send({
+        success: true, 
+        message: "Get all posts",
+        Posts
+      });
+    } else{
+      res.status(404).send({
+        success: false,
+        message: "No posts found for this user",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      sucess: false,
+      message: "Error while getting the post",
+    });
+  }
+}
