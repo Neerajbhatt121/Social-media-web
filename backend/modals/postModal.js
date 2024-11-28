@@ -17,10 +17,14 @@ const postSchema = new mongoose.Schema(
         },
         totallikes:{
             type:Number,
+            default: 0,
         },
-        likes:{
-            type:Boolean,
-        },
+        likes: [
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "user",
+            },
+          ],
         hashtag:[{
             type:String,
             trim:true,

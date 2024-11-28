@@ -130,3 +130,42 @@ export const GetPostController = async (req, res) => {
     });
   }
 }
+
+//--------------------------------//
+// LikethePost
+export const PostLiked = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const userId = req.user._id; // Assuming user info is added via middleware
+    console.log("check",postId, userId)
+    const post = await postModal.findById(postId);
+    if (!post) {
+      console.log(post)
+      return res.status(404).json({ success: false, message: "Post not found" });
+    }
+
+    // Check if user has already liked the post
+    if (post.likes.includes(userId)) {
+      // Unlike the post
+      post.likes = post.likes.filter((id) => id.toString() !== userId.toString());
+      post.totallikes -= 1;
+    } else {
+      // Like the post
+      post.likes.push(userId);
+      post.totallikes += 1;
+    }
+
+    await post.save();
+
+    res.status(200).json({
+      success: true,
+      message: post.likes.includes(userId)
+        ? "Post liked successfully"
+        : "Post unliked successfully",
+      totallikes: post.totallikes,
+    });
+  } catch (error) {
+    console.error("Error liking post:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};

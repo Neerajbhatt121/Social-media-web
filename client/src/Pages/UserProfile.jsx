@@ -11,6 +11,7 @@ import Sidebar from "../components/sidebar";
 import Uploadpage from "../components/Uploadpage";
 import "../Styles/Profile.css";
 import "../Styles/style.css";
+
 const UserProfile = () => {
   const [auth, setAuth] = useAuth();
   const [name, setname] = useState("");
@@ -91,13 +92,17 @@ const handleClosedUpload = (e) => {
     localStorage.removeItem("Social-auth");
     toast.success("Logout Successfully");
   };
+  
 
   return (
     <div className="profile-main">
       <Sidebar />
       <div className="Profile_main_container" style={{ marginLeft: "15vw" }}>
+        <div>
         <div className="dp">
             <img src={ProfileImage} alt="#" style={{width: "100%", borderRadius: "50%"}}/>
+        </div>
+          <h5 className="text-center">{auth?.user ? auth.user.username : "nothing"}</h5>
         </div>
         <div className="Profile_info_count">
           <div>
